@@ -1,5 +1,7 @@
 # PriceFinder BD (প্রাইসফাইন্ডার বিডি)
 
+[![CI](https://github.com/mdriad-dev/pricefinder-bd/actions/workflows/ci.yml/badge.svg)](https://github.com/mdriad-dev/pricefinder-bd/actions/workflows/ci.yml)
+
 **A full-stack product price comparison and nearby shop discovery prototype for Bangladesh.**
 
 PriceFinder BD is a portfolio project that demonstrates how consumers could scan product barcodes, search a catalog, compare listed prices in Bangladeshi Taka (BDT ৳), and discover nearby stores with Google Maps directions. It also includes a shopkeeper listing and price management workflow. The included catalog and store records are sample data; live retailer partnerships and production deployment are not claimed.
