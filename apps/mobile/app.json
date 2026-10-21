@@ -1,0 +1,49 @@
+{
+  "expo": {
+    "name": "PriceFinder BD",
+    "slug": "pricefinder-bd",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#10B981"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "PriceFinder BD uses the camera to scan product barcodes and take product photos for price comparison.",
+        "NSLocationWhenInUseUsageDescription": "PriceFinder BD uses your location to discover the closest verified shops and provide turn-by-turn directions.",
+        "NSPhotoLibraryUsageDescription": "PriceFinder BD needs access to your photos to identify products from saved images."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#10B981"
+      },
+      "permissions": [
+        "CAMERA",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "READ_EXTERNAL_STORAGE"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow PriceFinder BD to access your camera to scan product barcodes."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Allow PriceFinder BD to find verified shops near you."
+        }
+      ]
+    ],
+    "scheme": "pricefinderbd"
+  }
+}
