@@ -1,8 +1,8 @@
 # PriceFinder BD (প্রাইসফাইন্ডার বিডি)
 
-**Production-oriented product price comparison and nearby shop discovery application for Bangladesh.**
+**A full-stack product price comparison and nearby shop discovery prototype for Bangladesh.**
 
-PriceFinder BD empowers consumers across Bangladesh to scan product barcodes, search by name/model, compare verified retail prices in Bangladeshi Taka (BDT ৳), and discover nearby physical stores with turn-by-turn navigation in Google Maps. It also equips shopkeepers with a self-service inventory and price management portal.
+PriceFinder BD is a portfolio project that demonstrates how consumers could scan product barcodes, search a catalog, compare listed prices in Bangladeshi Taka (BDT ৳), and discover nearby stores with Google Maps directions. It also includes a shopkeeper listing and price management workflow. The included catalog and store records are sample data; live retailer partnerships and production deployment are not claimed.
 
 ---
 
@@ -15,7 +15,7 @@ PriceFinder BD empowers consumers across Bangladesh to scan product barcodes, se
    - Master products separated from concrete packaging sizes and models (e.g., *Teer Soyabean Oil 1 Litre* vs *5 Litre Can*; *Aarong Ghee 400g* vs *900g*; *Samsung Galaxy A15 128GB* vs *256GB*).
    - Strictly avoids conflating distinct package quantities or product tiers.
 3. **Price Comparison Engine**:
-   - Real-time comparison across physical outlets (e.g., Shwapno, Agora, Daily Shopping) and permitted online retailers.
+   - Comparison of recorded sample prices across store branches. Live retailer feeds and retailer partnerships are not configured by default.
    - Distinguishes **Lowest Listed Price** from **Lowest Verified & Available Price**.
    - Immutable audit trail in `price_observations` whenever prices or stock statuses change.
 4. **Geospatial Shop Discovery & Maps Navigation**:
@@ -46,7 +46,7 @@ PriceFinder BD empowers consumers across Bangladesh to scan product barcodes, se
   - **Pytest** with HTTPX async test client
   - JWT Authentication (compatible with **Supabase Auth**)
 - **Database**:
-  - PostgreSQL (**Supabase**) with Row Level Security (RLS) support
+  - PostgreSQL (including Supabase PostgreSQL; production connection and RLS policies must be configured and verified)
   - SQLite supported out-of-the-box for zero-dependency local development and CI
   - Currency: Bangladeshi Taka stored as `NUMERIC(12, 2)`
 
@@ -78,6 +78,19 @@ pricefinder-bd/
 ├── docs/                 # Architecture, DB schema, and API specifications
 └── .gitignore
 ```
+
+---
+
+## 📚 Contents
+
+- [Key Capabilities](#-key-capabilities)
+- [Architecture & Technology Stack](#-architecture--technology-stack)
+- [Getting Started](#-getting-started)
+- [Verification & Automated Testing](#-verification--automated-testing)
+- [Configuration & Environment Variables](#-configuration--environment-variables)
+- [Screenshots and Demo](#-screenshots-and-demo)
+- [Security and Production Readiness](#-security-and-production-readiness)
+- [Known Limitations](#️-known-limitations--disclaimers)
 
 ---
 
@@ -235,6 +248,24 @@ python scripts/verify_runtime.py
 | `EXPO_PUBLIC_API_URL` | Backend URL accessible by phone | `http://192.168.10.186:8000` or `http://localhost:8000` |
 
 ---
+
+## 📸 Screenshots and Demo
+
+Screenshots and a recorded demo have not yet been added to this repository. See [`docs/screenshots/README.md`](docs/screenshots/README.md) for the recommended capture list and filenames. Only add screenshots from a running app with sample or otherwise non-sensitive data; do not include API keys, tokens, private user information, or real customer records.
+
+## 🔐 Security and Production Readiness
+
+This repository is a development/portfolio project and is **not yet represented as production-ready**. Before any public deployment:
+
+- Replace demo/passwordless authentication flows with a fully verified identity-provider integration. Never rely on email-only checks for real accounts.
+- Generate a strong unique `SECRET_KEY`; keep all secrets in the deployment environment and rotate any secret that was ever committed.
+- Configure the production PostgreSQL connection and test Alembic migrations against a disposable staging database before applying them to production.
+- Review authorization and database access policies, including Supabase Row Level Security where applicable.
+- Add rate limiting, request-size limits, logging/monitoring, backups, privacy notices and an incident-response plan.
+- Verify AI provider behavior and cost controls before enabling live Gemini requests.
+- Do not treat sample prices, sample stores or unverified listings as confirmed live retail data.
+
+The `.env.example` files contain placeholders only. Copy them to local `.env` files and fill in local values; never commit `.env` files, API keys, database files or real user data.
 
 ## ⚠️ Known Limitations & Disclaimers
 
