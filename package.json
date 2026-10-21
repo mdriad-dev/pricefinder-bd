@@ -1,0 +1,8 @@
+{
+  "name": "pricefinder-bd",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd apps/mobile && npm install --legacy-peer-deps && npx expo export -p web"
+  }
+}

@@ -12,3 +12,4 @@ services:
         generateValue: true
       - key: DATABASE_URL
         value: sqlite:///./pricefinder_dev.db
+
