@@ -31,22 +31,28 @@
    ```bash
    cp .env.example .env
    ```
-   Fill in your Supabase database URL, Supabase JWT secret, and optional Gemini/Vision API key.
+   - For local development, defaults to SQLite (`sqlite:///./pricefinder_dev.db`).
+   - For production, provide your Supabase PostgreSQL connection string (`postgresql://postgres:[password]@db.[ref].supabase.co:5432/postgres`) and `SUPABASE_JWT_SECRET`.
 5. Apply database migrations:
    ```bash
    alembic upgrade head
    ```
-6. (Optional) Seed initial verified Bangladesh catalog & sample shops:
+6. Seed authentic sample Bangladesh catalog & sample shop branches:
    ```bash
    python scripts/seed_sample_data.py
    ```
-7. Run the development server:
+7. Run automated test suite:
    ```bash
-   uvicorn app.main:app --reload --port 8000
+   python -m pytest -v
    ```
-8. Run automated tests:
+8. Run the development server:
    ```bash
-   pytest
+   # Host on 0.0.0.0 so physical phones on the same Wi-Fi can connect
+   uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+   ```
+9. Verify live server integration:
+   ```bash
+   python scripts/verify_runtime.py
    ```
 
 ---
@@ -61,13 +67,22 @@
    ```bash
    npm install
    ```
-3. Configure environment variables:
+3. Run TypeScript typecheck:
+   ```bash
+   npx tsc --noEmit
+   ```
+4. Configure environment variables:
    ```bash
    cp .env.example .env
    ```
-   Set `EXPO_PUBLIC_API_URL` to your backend URL (e.g. `http://localhost:8000` or your machine LAN IP `http://192.168.x.x:8000` for physical device testing).
-4. Start the Expo development server:
+   - **When testing on Web / Android Emulator**: `EXPO_PUBLIC_API_URL=http://localhost:8000`
+   - **When testing on a Physical Phone via Expo Go**: Find your computer's local Wi-Fi IP address (via `ipconfig` on Windows or `ifconfig` on Linux/macOS) and set:
+     ```
+     EXPO_PUBLIC_API_URL=http://192.168.10.186:8000
+     ```
+     *(Both your phone and PC must be connected to the same Wi-Fi network).*
+5. Start the Expo development server:
    ```bash
    npx expo start
    ```
-5. Scan the QR code using Expo Go on Android or iOS, or press `a` for Android Emulator / `w` for Web.
+6. Scan the QR code using Expo Go on Android or iOS, or press `w` to open directly in your web browser.

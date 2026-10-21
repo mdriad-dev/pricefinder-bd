@@ -32,6 +32,11 @@ wheels/
 .coverage
 htmlcov/
 
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
 # Expo and React Native
 .expo/
 dist/
