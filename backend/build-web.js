@@ -45,3 +45,4 @@ if (fs.existsSync(sourceDist) && sourceDist !== targetDist) {
 }
 
 console.log('✓ Web build completed successfully!');
+

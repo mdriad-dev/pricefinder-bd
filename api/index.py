@@ -1,16 +1,10 @@
-import sys
 import os
+import sys
 
-# Add backend directory to sys.path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "backend")))
+# Delegate directly to root main.py app
+current_dir = os.path.dirname(os.path.abspath(__file__))
+root_dir = os.path.dirname(current_dir)
+if root_dir not in sys.path:
+    sys.path.insert(0, root_dir)
 
-try:
-    from app.main import app
-except Exception as e:
-    from fastapi import FastAPI
-    app = FastAPI(title="PriceFinder BD API")
-    
-    @app.get("/")
-    def root():
-        return {"app": "PriceFinder BD API", "status": "online"}
-
+from main import app
