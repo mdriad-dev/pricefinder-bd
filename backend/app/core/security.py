@@ -32,7 +32,17 @@ def decode_access_token(token: str) -> TokenPayload:
                 detail="Invalid token payload: missing sub",
                 headers={"WWW-Authenticate": "Bearer"},
             )
-        role = payload.get("role") or payload.get("app_metadata", {}).get("role", "consumer")
+        # Check custom app role in user_metadata, app_metadata, or root claims
+        role = (
+            payload.get("user_metadata", {}).get("role")
+            or payload.get("app_metadata", {}).get("role")
+        )
+        if not role:
+            raw_role = payload.get("role")
+            if raw_role and raw_role != "authenticated":
+                role = raw_role
+            else:
+                role = "consumer"
         email = payload.get("email")
         return TokenPayload(sub=user_id, email=email, role=role)
     except jwt.PyJWTError:
