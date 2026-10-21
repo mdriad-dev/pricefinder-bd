@@ -1,7 +1,6 @@
 {
-  "buildCommand": "cd apps/mobile && npm install --legacy-peer-deps && npx expo export -p web",
-  "outputDirectory": "apps/mobile/dist",
-  "framework": null,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "rewrites": [
     {
       "source": "/(.*)",

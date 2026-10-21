@@ -1,0 +1,6 @@
+backend/
+docs/
+scripts/
+*.db
+*.sqlite
+*.sqlite3
