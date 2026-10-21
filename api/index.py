@@ -13,3 +13,4 @@ except Exception as e:
     @app.get("/")
     def root():
         return {"app": "PriceFinder BD API", "status": "online"}
+

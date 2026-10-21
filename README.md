@@ -173,6 +173,15 @@ pricefinder-bd/
 
 ---
 
+### 4. Direct Mobile Web Deployment (Vercel)
+
+The mobile client is configured for zero-setup web access:
+- **Universal Build Script**: `build-web.js` runs `npx expo export -p web` and copies the production bundle to `dist/`.
+- **Multi-Root Support**: Configured to build cleanly whether Vercel's Root Directory setting is set to the repository root `/`, `apps/mobile/`, or `backend/`.
+- **Zero-Backend Browser Mode**: Includes embedded catalog fallback data so search, barcode lookups, price comparisons, and nearby store maps function immediately on mobile browsers without requiring a running local backend server.
+
+---
+
 ## 🧪 Verification & Automated Testing
 
 ### 1. Backend Automated Tests (Pytest)
